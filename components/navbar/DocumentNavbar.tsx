@@ -30,6 +30,7 @@ const DocumentNavbar = () => {
     const html = editor?.getHTML() ?? ""
     downloadFile(html, "document.html", "text/html") // Download as a JSON file
   }
+
   return (
     <div className="flex print:hidden items-center">
       <Link href={"/"}>
@@ -74,6 +75,35 @@ const DocumentNavbar = () => {
               </MenubarItem>
               <MenubarItem>
                 Paste <MenubarShortcut>⌘ V</MenubarShortcut>
+              </MenubarItem>
+              <MenubarItem>
+                Undo
+                <MenubarShortcut>
+                  <MenubarShortcut>⌘ Z</MenubarShortcut>
+                </MenubarShortcut>
+              </MenubarItem>
+              <MenubarItem>
+                Redo <MenubarShortcut>⌘ Y</MenubarShortcut>
+              </MenubarItem>
+            </MenubarContent>
+          </MenubarMenu>
+          <MenubarMenu>
+            <MenubarTrigger>Format</MenubarTrigger>
+            <MenubarContent>
+              <MenubarItem>
+                Bold <MenubarShortcut>⌘ B</MenubarShortcut>
+              </MenubarItem>
+              <MenubarItem>
+                Italicize <MenubarShortcut>⌘ I</MenubarShortcut>
+              </MenubarItem>
+              <MenubarItem>
+                Underline
+                <MenubarShortcut>
+                  <MenubarShortcut>⌘ U</MenubarShortcut>
+                </MenubarShortcut>
+              </MenubarItem>
+              <MenubarItem>
+                Strikethrough <MenubarShortcut>⌘ shift S</MenubarShortcut>
               </MenubarItem>
             </MenubarContent>
           </MenubarMenu>
