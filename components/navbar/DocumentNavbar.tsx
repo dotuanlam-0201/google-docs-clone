@@ -1,6 +1,5 @@
 "use client"
 
-import DocumentFileName from "@/components/navbar/DocumentFileName"
 import {
   Menubar,
   MenubarContent,
@@ -37,7 +36,7 @@ const DocumentNavbar = () => {
         <Image width={60} height={60} alt="Logo" src={"/logo.svg"} />
       </Link>
       <div>
-        <DocumentFileName />
+        asdf
         <Menubar className="bg-transparent border-0 p-0 shadow-none">
           <MenubarMenu>
             <MenubarTrigger>File</MenubarTrigger>

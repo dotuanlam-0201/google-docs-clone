@@ -1,7 +1,12 @@
 "use client"
 
+import { Threads } from "@/components/thread"
 import { HEADING_LEVEL } from "@/lib/constant/editor"
 import { useEditorStore } from "@/store/use-editor"
+import {
+  FloatingToolbar,
+  useLiveblocksExtension,
+} from "@liveblocks/react-tiptap"
 import Blockquote from "@tiptap/extension-blockquote"
 import { Color } from "@tiptap/extension-color"
 import Document from "@tiptap/extension-document"
@@ -28,6 +33,7 @@ import StarterKit from "@tiptap/starter-kit"
 import "./index.css"
 
 export default () => {
+  const liveblocks = useLiveblocksExtension()
   const { setEditor } = useEditorStore()
   const editor = useEditor({
     onCreate(props) {
@@ -37,6 +43,10 @@ export default () => {
       setEditor(props.editor)
     },
     extensions: [
+      liveblocks,
+      StarterKit.configure({
+        history: false,
+      }),
       Document,
       Paragraph,
       Text,
@@ -76,32 +86,6 @@ export default () => {
       }),
       OrderedList,
     ],
-    content: `
-      <p>
-        This is a radically reduced version of Tiptap. It has support for a document, with paragraphs and text. That’s it. It’s probably too much for real minimalists though.
-      </p>
-      <p>
-        The paragraph extension is not really required, but you need at least one node. Sure, that node can be something different.
-      </p>
-              <table>
-          <tbody>
-            <tr>
-              <th>Name</th>
-              <th colspan="3">Description</th>
-            </tr>
-            <tr>
-              <td>Cyndi Lauper</td>
-              <td>Singer</td>
-              <td>Songwriter</td>
-              <td>Actress</td>
-            </tr>
-          </tbody>
-        </table>
-        <img src="https://placehold.co/800x400" />
-        <hr>
-        <img src="https://placehold.co/800x400/6A00F5/white" />
-
-    `,
     editorProps: {
       attributes: {
         class:
@@ -111,5 +95,12 @@ export default () => {
     immediatelyRender: false,
   })
   if (!editor) return null
-  return <EditorContent editor={editor} />
+
+  return (
+    <div>
+      <EditorContent editor={editor} className="editor" />
+      <Threads editor={editor} />
+      <FloatingToolbar editor={editor} />
+    </div>
+  )
 }
